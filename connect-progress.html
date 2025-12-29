@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Only Used Tesla – Connect Progress Demo</title>
+  <link rel="stylesheet" href="connect-progress.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="app-badge">OUT</div>
+      <div class="header-text">
+        <p class="eyebrow">Only Used Tesla</p>
+        <h1>Connect your Tesla</h1>
+        <p class="sub">We’ll briefly connect to Tesla to build your OUT report.</p>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="card" aria-live="polite">
+        <!-- Idle state -->
+        <div class="panel panel--idle is-active" data-state="idle">
+          <p class="card-title">Ready when you are.</p>
+          <p class="card-body">
+            Tap connect to open Tesla’s login page. We never see your password. After you sign in,
+            we’ll pull your vehicle data once and disconnect.
+          </p>
+          <button id="connectButton" class="cta-btn">
+            <span class="cta-label">Connect with Tesla</span>
+          </button>
+          <p class="card-footnote">
+            Read‑only access only. You can revoke access from your Tesla account at any time.
+          </p>
+        </div>
+
+        <!-- Connecting state -->
+        <div class="panel panel--connecting" data-state="connecting" aria-hidden="true">
+          <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+          </div>
+          <div class="spinner-wrap">
+            <div class="spinner" aria-hidden="true"></div>
+          </div>
+          <p class="card-title">Connecting to Tesla…</p>
+          <p class="card-body">
+            Securely talking to Tesla’s servers and pulling your vehicle information.
+            This usually takes a few seconds.
+          </p>
+          <ul class="steps">
+            <li class="step step--active">Redirecting to Tesla</li>
+            <li class="step">Confirming your account</li>
+            <li class="step">Building your OUT report</li>
+          </ul>
+          <div class="dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Connected state -->
+        <div class="panel panel--connected" data-state="connected" aria-hidden="true">
+          <div class="status-icon status-icon--success" aria-hidden="true">
+            <span class="check"></span>
+          </div>
+          <p class="card-title">You’re connected.</p>
+          <p class="card-body">
+            We’ve received your vehicle data and generated your OUT report.
+            Your Tesla session is now safely disconnected on our side.
+          </p>
+          <ul class="summary-list">
+            <li>✔ Battery, Autopilot and warranty snapshot captured</li>
+            <li>✔ No control access – data was read‑only</li>
+            <li>✔ You can revoke access anytime from Tesla</li>
+          </ul>
+          <button id="restartButton" class="secondary-btn">
+            Start over (demo)
+          </button>
+        </div>
+      </section>
+
+      <p class="dev-note">
+        Demo note for your devs: in production, flip these states based on your real
+        OAuth / Fleet API callbacks instead of the simulated timeout in <code>connect-progress.js</code>.
+      </p>
+    </main>
+  </div>
+
+  <script src="connect-progress.js"></script>
+</body>
+</html>
